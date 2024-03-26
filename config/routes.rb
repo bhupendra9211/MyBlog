@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
   get 'home/index'
-  root 'home#index'
-  # root 'posts#index'
+  # root 'home#index'
+  root 'posts#index'
+  resources :posts
   resources :home
   # root 'home#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

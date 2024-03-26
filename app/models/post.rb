@@ -10,6 +10,8 @@
 #  updated_at  :datetime         not null
 #
 class Post < ApplicationRecord
+  validates :title, :description, presence: true
   has_one_attached :photo
+  
   belongs_to :user
 end

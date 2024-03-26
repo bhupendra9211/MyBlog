@@ -24,7 +24,6 @@
        
       <div class="hidden lg:block">
         <ul class="flex items-center">
-
           <li class="group relative mr-6 mb-1">
             <div
                 class="absolute left-0 bottom-0 z-20 h-0 w-full opacity-75 transition-all group-hover:h-2 group-hover:bg-yellow">
@@ -50,27 +49,33 @@
           </li>
 
           <% if user_signed_in? %>
-          <li class="group relative mr-6 mb-1">
-            <div
-                class="absolute left-0 bottom-0 z-20 h-0 w-full opacity-75 transition-all group-hover:h-2 group-hover:bg-yellow">
-            </div>
-            <%= link_to 'Sign out', destroy_user_session_path, class:"relative z-30 block px-2 font-body text-lg font-medium text-primary transition-colors group-hover:text-green dark:text-white dark:group-hover:text-secondary", method: :destroy, data:{turbo_confirm: "Are you sure ?","turbo-method": :delete}  %>
-          </li>
+            <li class="group relative mr-6 mb-1">
+              <div class="absolute left-0 bottom-0 z-20 h-0 w-full opacity-75 transition-all group-hover:h-2 group-hover:bg-yellow">
+              </div>
+              <%= link_to 'Create Blog', new_post_path, class:"relative z-30 block px-2 font-body text-lg font-medium text-primary transition-colors group-hover:text-green dark:text-white dark:group-hover:text-secondary"%>
+            </li>
+            
+            <li class="group relative mr-6 mb-1">
+              <div class="absolute left-0 bottom-0 z-20 h-0 w-full opacity-75 transition-all group-hover:h-2 group-hover:bg-yellow">
+              </div>
+              <%= link_to 'Sign out', destroy_user_session_path, class:"relative z-30 block px-2 font-body text-lg font-medium text-primary transition-colors group-hover:text-green dark:text-white dark:group-hover:text-secondary", method: :destroy, data:{turbo_confirm: "Are you sure ?","turbo-method": :delete}  %>
+            </li>
+
           <% else %>
-          <li class="group relative mr-6 mb-1">
-            <div
-                class="absolute left-0 bottom-0 z-20 h-0 w-full opacity-75 transition-all group-hover:h-2 group-hover:bg-yellow">
-            </div>
-            <%= link_to 'Sign in', new_user_session_path, class:"relative z-30 block px-2 font-body text-lg font-medium text-primary transition-colors group-hover:text-green dark:text-white dark:group-hover:text-secondary"  %>
-          </li>
+            <li class="group relative mr-6 mb-1">
+              <div
+                  class="absolute left-0 bottom-0 z-20 h-0 w-full opacity-75 transition-all group-hover:h-2 group-hover:bg-yellow">
+              </div>
+              <%= link_to 'Sign in', new_user_session_path, class:"relative z-30 block px-2 font-body text-lg font-medium text-primary transition-colors group-hover:text-green dark:text-white dark:group-hover:text-secondary"  %>
+            </li>
 
-          <li class="group relative mr-6 mb-1">
-            <div
-                class="absolute left-0 bottom-0 z-20 h-0 w-full opacity-75 transition-all group-hover:h-2 group-hover:bg-yellow">
-            </div>
-            <%= link_to 'Sign up', new_user_registration_path, class:"relative z-30 block px-2 font-body text-lg font-medium text-primary transition-colors group-hover:text-green dark:text-white dark:group-hover:text-secondary"  %>
-          </li>
-
+            <li class="group relative mr-6 mb-1">
+              <div
+                  class="absolute left-0 bottom-0 z-20 h-0 w-full opacity-75 transition-all group-hover:h-2 group-hover:bg-yellow">
+              </div>
+              <%= link_to 'Sign up', new_user_registration_path, class:"relative z-30 block px-2 font-body text-lg font-medium text-primary transition-colors group-hover:text-green dark:text-white dark:group-hover:text-secondary"  %>
+            </li>
+          <% end %>
           <li>
             <i class="bx cursor-pointer text-3xl text-primary dark:text-white" @click="themeSwitch()"
                 :class="isDarkMode ? 'bxs-sun' : 'bxs-moon'"></i>
@@ -79,9 +84,9 @@
       </div>
     </div>
   </div>
-  <% end %>
+         
 
-  <% if user_signed_in? %>
+  
   <div
       class="pointer-events-none fixed inset-0 z-50 flex bg-black bg-opacity-80 opacity-0 transition-opacity lg:hidden"
       :class="isMobileMenuOpen ? 'opacity-100 pointer-events-auto' : ''">
@@ -101,18 +106,18 @@
         <li class="">
           <a href="/contact" class="mb-3 block px-2 font-body text-lg font-medium text-white">Contact</a>
         </li>
-        <li class="">
-          <%= link_to 'Sign out', destroy_user_session_path, class:"mb-3 block px-2 font-body text-lg font-medium text-white", method: :destroy, data:{turbo_confirm: "Are you sure ?","turbo-method": :delete}  %>
-        </li>
+        <% if user_signed_in? %>
+          <li class="">
+            <%= link_to 'Sign out', destroy_user_session_path, class:"mb-3 block px-2 font-body text-lg font-medium text-white", method: :destroy, data:{turbo_confirm: "Are you sure ?","turbo-method": :delete}  %>
+          </li>
         <% else %>
-        <li class="">
-          <%= link_to 'Sign in', new_user_session_path, class:"mb-3 block px-2 font-body text-lg font-medium text-white"  %>
-        </li>
-        <li class="">
-          <%= link_to 'Sign up', new_user_registration_path, class:"mb-3 block px-2 font-body text-lg font-medium text-white"  %>
-        </li>
-
+          <li class="">
+            <%= link_to 'Sign in', new_user_session_path, class:"mb-3 block px-2 font-body text-lg font-medium text-white"  %>
+          </li>
+          <li class="">
+            <%= link_to 'Sign up', new_user_registration_path, class:"mb-3 block px-2 font-body text-lg font-medium text-white"  %>
+          </li>
+        <% end %>
       </ul>
     </div>
-    <% end %>
   </div>
